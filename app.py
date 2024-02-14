@@ -210,7 +210,7 @@ def predict():
 
         response = Markup(str(fertilizer_dic[key]))
 
-        value = value.capitalize()
+        # value = value.capitalize()
 
         return render_template('result.html', inf=response, value=value)
 
