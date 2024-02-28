@@ -17,6 +17,14 @@
     <title>AgriCrop</title>
 </head>
 <style>
+    .navbar-nav .nav-item {
+        margin-right: 15px;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+    }
+
     .google{
         
             position: absolute;
@@ -24,32 +32,37 @@
             right: 10px;
         
     }
+
 </style>
 <body>
+    <!-- nav bar -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">AgriCrop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+        <a class="navbar-brand" href="/">
+            AgriCrop
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/predict">Predict</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="google">
                     <div id="google_translate_element"></div>
                 </li>
-
-
             </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div id="google_translate_element"></div>
         </div>
     </nav>
 
