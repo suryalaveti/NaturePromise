@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/.css') }}">
     <title>AgriCrop</title>
     <style>
         .navbar-nav .nav-item {
             margin-right: 15px;
         }
-        
+
         .nav-link {
             font-size: 1.2rem;
         }
@@ -24,34 +26,37 @@
             right: 10px;
         }
 
-        .container{
+        .container {
             background-color: lavender;
-            width: 650px;
-            height: auto;
-            margin-top: 30px;
+            width: 90%; /* Adjust container width */
+            max-width: 650px; /* Max width for larger screens */
+            margin: 30px auto; /* Center container */
             border-radius: 20px;
             padding: 10px;
         }
 
         .box {
-            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Semi-transparent white background */
             padding: 20px;
             border-radius: 10px;
         }
-        body{
+
+        body {
             background-image: url('/static/images/predict1.jpg');
             background-repeat: no-repeat;
             background-size: cover;
         }
 
         .form-group {
-            margin-bottom: 20px; /* Adjust spacing between form fields */
+            margin-bottom: 20px;
+            /* Adjust spacing between form fields */
         }
 
         #singlebutton {
-            width: 100%; /* Make the button full width */
+            width: 100%;
+            /* Make the button full width */
         }
-
     </style>
 </head>
 
@@ -91,57 +96,52 @@
 
             <form action="/predict" method="POST">
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="nitrogen">Amount of Nitrogen</label>
-                            <input type="number" class="form-control" id="nitrogen" name="nitrogen" placeholder="Enter the amount of Nitrogen" required min="0" max="150" step="1">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nitrogen">Amount of Nitrogen</label>
+                        <input type="number" class="form-control" id="nitrogen" name="nitrogen"
+                            placeholder="Enter the amount of Nitrogen" required min="0" max="150" step="1">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="phosphorus">Amount of Phosphorus</label>
-                            <input type="number" class="form-control" id="phosphorus" name="phosphorus" placeholder="Enter the amount of Phosphorus" required min="-10" max="150" step="1">
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label for="phosphorus">Amount of Phosphorus</label>
+                        <input type="number" class="form-control" id="phosphorus" name="phosphorus"
+                            placeholder="Enter the amount of Phosphorus" required min="-10" max="150" step="1">
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="potassium">Amount of Potassium</label>
-                            <input type="number" class="form-control" id="potassium" name="potassium" placeholder="Enter the amount of Potassium" required min="-10" max="210" step="1">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="potassium">Amount of Potassium</label>
+                        <input type="number" class="form-control" id="potassium" name="potassium"
+                            placeholder="Enter the amount of Potassium" required min="-10" max="210" step="1">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="temperature">Temperature</label>
-                            <input type="number" class="form-control" id="temperature" name="temperature" placeholder="Enter the Temperature" required min="1" max="45" step="0.01">
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label for="temperature">Temperature</label>
+                        <input type="number" class="form-control" id="temperature" name="temperature"
+                            placeholder="Enter the Temperature" required min="1" max="45" step="0.01">
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="humidity">Humidity</label>
-                            <input type="number" class="form-control" id="humidity" name="humidity" placeholder="Enter the Humidity" min="14" max="100" step="0.01">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="humidity">Humidity</label>
+                        <input type="number" class="form-control" id="humidity" name="humidity"
+                            placeholder="Enter the Humidity" min="14" max="100" step="0.01">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="ph">Soil pH</label>
-                            <input type="number" class="form-control" id="ph" name="ph" placeholder="Enter the pH value of the soil" required min="1" max="14" step="0.01">
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label for="ph">Soil pH</label>
+                        <input type="number" class="form-control" id="ph" name="ph"
+                            placeholder="Enter the pH value of the soil" required min="1" max="14" step="0.01">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="rainfall">Rainfall</label>
-                    <input type="number" class="form-control" id="rainfall" name="rainfall" placeholder="Enter the Rainfall" required min="20" max="300" step="0.01">
+                    <input type="number" class="form-control" id="rainfall" name="rainfall"
+                        placeholder="Enter the Rainfall" required min="20" max="300" step="0.01">
                 </div>
 
-                <div class="col-md-12 text-center">
+                <div class="text-center">
                     <button id="singlebutton" name="singlebutton" class="btn btn-primary">Predict</button>
                 </div>
 
@@ -151,29 +151,30 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js " integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI " crossorigin="anonymous "></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js "
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj "
+        crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js "
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo "
+        crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js "
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI "
+        crossorigin="anonymous "></script>
 
     <!-- Google Translate script -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-          new google.translate.TranslateElement(
-            {
-              pageLanguage: "en",
-              includedLanguages: "te,zh-CN,ja,ta",
-              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-              autoDisplay: false,
-            },
-            "google_translate_element"
-          );
+            new google.translate.TranslateElement({
+                pageLanguage: "en",
+                includedLanguages: "te,zh-CN,ja,ta",
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false,
+            }, "google_translate_element");
         }
-      </script>
-  
-      <script
-        type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      ></script>
+    </script>
+
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
