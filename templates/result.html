@@ -1,148 +1,146 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriCrop - Crop Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS styles */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        .navbar-nav .nav-item {
+        margin-right: 15px;
+    }
 
-    <title>AgriCrop</title>
+    .nav-link {
+        font-size: 1.2rem;
+    }
 
+        .jumbotron {
+            background-color: #28a745;
+            color: #fff;
+            padding: 2rem;
+            margin-bottom: 0;
+        }
 
+        .crop-image {
+            max-width: 100%;
+            height: auto;
+        }
 
-</head>
-<style>
-    .google{
+        .suggestions {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .btn-go-back {
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+
+        .btn-go-back:hover {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .google{
         
         position: absolute;
         top: 10px;
         right: 10px;
     
 }
-</style>
+    </style>
+</head>
+
 <body>
 
-
+    
+    <!-- nav bar -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">AgriCrop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+        <a class="navbar-brand" href="/">
+            AgriCrop
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/predict">Predict</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="google">
                     <div id="google_translate_element"></div>
                 </li>
-
             </ul>
+        </div>
+        <div class="google">
+            <div id="google_translate_element"></div>
         </div>
     </nav>
 
-    <!-- all inside a background! -->
 
-    <div class="alert alert-success glow" role="alert">
-        <h2 class="alert-heading text-center">Crop Predicted</h2>
-        <hr>
-        <ul>
-            <h4 class="text-center mt-3"><b>Based on the details filled in the form,the best crop/Vegetable/Fruit to grow is : <b style = "color:salmon;font-weight: bold; font-size:2rem;">{{value}}</b> </h4>
-            </p>
+    <!-- Main content -->
+    <div class="container mt-4">
+        <div class="jumbotron">
+            <h2 class="text-center mb-4">Crop Predicted</h2>
+            <div class="text-center">
+                <img src="/static/images/crop/{{value}}.jpg" class="crop-image" alt="Crop Image" style="height: 350px;width: 450px;">
+            </div>
+            <h4 class="text-center mt-4">The best crop to grow is: <span
+                    style="color: salmon; font-weight: bold;">{{value | upper}}</span></h4>
+        </div>
 
-        </ul>
-        <hr>
+        <div class="suggestions">
+            <h2 class="text-center mb-4">Suggestions</h2>
+            <p class="lead text-center">{{inf}}</p>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-success btn-go-back">Go Back</a>
+        </div>
     </div>
 
-    <div class="crop" style="display: flex;align-items: center; justify-content: center;">
-        <img src="/static/images/crop/{{value}}.jpg"  height="450" width="450" class="d-block" alt="Crop Image">
-    </div>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 
-
-
-    <div class="container glow">
-        <p class="text-center mt-3"><b>After knowing the best crop which is grown,here are Suggestions on which the Farmers can work upon</b></p>
-    </div>
-
-
-    <div class="alert alert-success glow" role="alert">
-        <h2 class="alert-heading text-center">Suggestions</h2>
-        <hr>
-        <ul>
-            <p class="text-center mt-3"><b>{{inf}}</b></p>
-
-        </ul>
-        <hr>
-    </div>
-
-
-
-
-    <!-- <div class="alert alert-success" role="alert">
-            <h2 class="alert-heading text-center">Suggestions</h2>
-            <hr>
-            <ul class="glow">
-                {{inf}}
-            </ul>
-            <hr>
-        </div> -->
-
-    <div class="col-md-12 text-center">
-        <a href="/">
-            <button id="singlebutton" name="singlebutton" class="btn btn-outline-success my-2 my-sm-0">Go Back</button>
-        </a>
-    </div>
-
-
-
-
-
-
-
-
-    <!-- <div class="container">
-        <a href="/">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go Back</button>
-        </a>
-    </div> -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js " integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo " crossorigin="anonymous "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js " integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI " crossorigin="anonymous "></script>
-
-    <!-- google script -->
+    <!-- Google Translate -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-          new google.translate.TranslateElement(
-            {
-              pageLanguage: "en",
-              includedLanguages: "te",
-              layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-              autoDisplay: false,
-            },
-            "google_translate_element"
-          );
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'te',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
         }
-      </script>
-  
-      <script
-        type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      ></script>
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
