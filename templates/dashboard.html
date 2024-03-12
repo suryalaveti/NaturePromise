@@ -1,4 +1,4 @@
-
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -138,7 +138,7 @@
                 <div class="card-body">
                     <label for="rice" class="text-center mb-3"><b>Production of Rice in India</b></label>
                     <div class="chart-container">
-                        <canvas id="chart1"></canvas>
+                        <canvas id="chart1"  height="400" width="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                 <div class="card-body">
                     <label for="jute" class="text-center mb-3"><b>Production of Jute in India</b></label>
                     <div class="chart-container">
-                        <canvas id="chart2"></canvas>
+                        <canvas id="chart2"  height="400" width="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
                 <div class="card-body">
                     <label for="maize" class="text-center mb-3"><b>Production of Maize in India</b></label>
                     <div class="chart-container">
-                        <canvas id="chart3"></canvas>
+                        <canvas id="chart3"  height="400" width="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                 <div class="card-body">
                     <label for="mango" class="text-center mb-3"><b>Production of Mango in India</b></label>
                     <div class="chart-container">
-                        <canvas id="chart4"></canvas>
+                        <canvas id="chart4" height="400" width="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                 <div class="card-body">
                     <label for="papaya" class="text-center mb-3"><b>Production of Papaya in India</b></label>
                     <div class="chart-container">
-                        <canvas id="chart5"></canvas>
+                        <canvas id="chart5" height="400" width="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -220,152 +220,503 @@
 
     <!-- Chart Script -->
     <script>
-        // Chart 1
-        var ctx1 = document.getElementById('chart1').getContext('2d');
-        var chart1 = new Chart(ctx1, {
-            type: 'line',
+        rice_states = new Array();
+        rice_production = new Array();
+        rice_data = [{
+            "State": "West Bengal",
+            "Area": 5.46,
+            "Production": 15.75
+        }, {
+            "State": "Uttar Pradesh",
+            "Area": 5.86,
+            "Production": 12.5
+        }, {
+            "State": "Punjab",
+            "Area": 2.97,
+            "Production": 11.82
+        }, {
+            "State": "Tamil Nadu",
+            "Area": 2.04,
+            "Production": 7.98
+        }, {
+            "State": "Andhra Pradesh",
+            "Area": 2.16,
+            "Production": 7.49
+        }]
+        rice_data.forEach(element => {
+            rice_states.push(element['State'])
+            rice_production.push(Math.round(element['Production']))
+        });
+
+
+
+        // jute data
+
+        jute_states = new Array();
+        jute_production = new Array();
+        jute_data = [{
+            "State": "West Bengal",
+            "Area": 1.59,
+            "Production": 8.23
+        }, {
+            "State": "Bihar",
+            "Area": 1.57,
+            "Production": 7.69
+        }, {
+            "State": "Assam",
+            "Area": 1.59,
+            "Production": 6.53
+        }, {
+            "State": "Andhra Pradesh",
+            "Area": 0.024,
+            "Production":0.949 
+        }, {
+            "State": "Meghalaya",
+            "Area": 0.27,
+            "Production": 0.855
+        }]
+        jute_data.forEach(element => {
+            jute_states.push(element['State'])
+            jute_production.push(Math.round(element['Production']))
+        });
+
+
+
+        // maize data
+
+        maize_states = new Array();
+        maize_production = new Array();
+        maize_data = [{
+            "State": "Uttar Pradesh",
+            "Area": 43.46,
+            "Production": 33.54
+        }, {
+            "State": "Karnataka",
+            "Area": 32.13,
+            "Production": 26.4
+        }, {
+            "State": "Rajasthan",
+            "Area": 25.69,
+            "Production": 20.40
+        }, {
+            "State": "Uttar Pradesh",
+            "Area": 20.3,
+            "Production": 17.89
+        }, {
+            "State": "Tamil Nadu",
+            "Area": 20.3,
+            "Production": 17.35
+        }]
+        maize_data.forEach(element => {
+            maize_states.push(element['State'])
+            maize_production.push(Math.round(element['Production']))
+        });
+
+
+        // mango data
+
+        mango_states = new Array();
+        mango_production = new Array();
+        mango_data = [{
+            "State": "Uttar Pradesh",
+            "Area": 6.11,
+            "Production":  45.5183
+        }, {
+            "State": "Andhra Pradesh",
+            "Area": 8.99,
+            "Production": 43.7361
+        }, {
+            "State": "Bihar",
+            "Area": 4.52,
+            "Production": 17.60
+        }, {
+            "State": "Tamil Nadu ",
+            "Area": 3.77,
+            "Production": 12.34
+        }, {
+            "State": "Gujarat",
+            "Area": 4.02,
+            "Production": 12.06
+        }]
+        mango_data.forEach(element => {
+            mango_states.push(element['State'])
+            mango_production.push(Math.round(element['Production']))
+        });
+
+
+        // Papaya Data
+
+
+        papaya_states = new Array();
+        papaya_production = new Array();
+        papaya_data = [{
+            "State": "Andhra Pradesh",
+            "Area": 1000,
+            "Production": 9.49
+        }, {
+            "State": "Kerala",
+            "Area": 1214,
+            "Production":8.49
+        }, {
+            "State": "Maharashtra",
+            "Area": 987,
+            "Production": 8.27
+        }, {
+            "State": "West Bengal",
+            "Area": 2450,
+            "Production": 7.8
+        }, {
+            "State": "Manipur",
+            "Area": 3212,
+            "Production": 7.0
+        }]
+        papaya_data.forEach(element => {
+            papaya_states.push(element['State'])
+            papaya_production.push(Math.round(element['Production']))
+        });
+
+
+
+        // banana data
+
+        banana_states = new Array();
+        banana_production = new Array();
+        banana_data = [{
+            "State": "maharastra",
+            "Area": 2.1,
+            "Production": 5.2
+        }, {
+            "State": "Tamil Nadu",
+            "Area": 2.8,
+            "Production": 4.9
+        }, {
+            "State": "gujarat",
+            "Area": 1.52,
+            "Production": 3.7
+        }, {
+            "State": "Andhra Pradesh",
+            "Area": 1.99,
+            "Production": 2.8
+        }, {
+            "State": "Karnataka",
+            "Area": 2.57,
+            "Production": 2.1
+        }]
+        banana_data.forEach(element => {
+            banana_states.push(element['State'])
+            banana_production.push(Math.round(element['Production']))
+        });
+
+
+
+
+
+
+
+        // chart1 Rice
+
+        var ctx = document.getElementById('chart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: ['2016', '2017', '2018', '2019', '2020'],
+                labels: rice_states,
                 datasets: [{
-                    label: 'West Bengal',
-                    data: [900, 950, 1000, 1050, 1100],
-                    fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
-                }, {
-                    label: 'Uttar Pradesh',
-                    data: [850, 900, 950, 1000, 1050],
-                    fill: false,
-                    borderColor: 'rgb(54, 162, 235)',
-                    tension: 0.1
+                    label: 'Production of Rice in India(in Mt)',
+                    data: rice_production,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2.5
                 }]
             },
+
+            //     yAxes: [{
+            //     ticks: {
+            //         fontSize: 40
+            //     }
+            // }]
             options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
+                scales: {
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }],
+                    xAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }]
+
                 }
             }
         });
 
-        // Chart 2
-        var ctx2 = document.getElementById('chart2').getContext('2d');
-        var chart2 = new Chart(ctx2, {
-            type: 'line',
+        // chart 2 Jute
+
+        var ctx = document.getElementById('chart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: ['2016', '2017', '2018', '2019', '2020'],
+                labels: jute_states,
                 datasets: [{
-                    label: 'West Bengal',
-                    data: [800, 750, 700, 650, 600],
-                    fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
-                }, {
-                    label: 'Assam',
-                    data: [700, 650, 600, 550, 500],
-                    fill: false,
-                    borderColor: 'rgb(54, 162, 235)',
-                    tension: 0.1
+                    label: 'Production of Jute in India(in Mt)',
+                    data: jute_production,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2.5
                 }]
             },
             options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
+                scales: {
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }],
+                    xAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }]
+
                 }
             }
         });
 
-        // Chart 3
-        var ctx3 = document.getElementById('chart3').getContext('2d');
-        var chart3 = new Chart(ctx3, {
-            type: 'line',
+
+        // chart3 Maize
+
+        var ctx = document.getElementById('chart3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: ['2016', '2017', '2018', '2019', '2020'],
+                labels: maize_states,
                 datasets: [{
-                    label: 'Karnataka',
-                    data: [800, 850, 900, 950, 1000],
-                    fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
-                }, {
-                    label: 'Uttar Pradesh',
-                    data: [750, 800, 850, 900, 950],
-                    fill: false,
-                    borderColor: 'rgb(54, 162, 235)',
-                    tension: 0.1
+                    label: 'Production of Maize in India(in Mt)',
+                    data: maize_production,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2.5
                 }]
             },
             options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
+                scales: {
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }],
+                    xAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }]
+
                 }
             }
         });
 
-        // Chart 4
-        var ctx4 = document.getElementById('chart4').getContext('2d');
-        var chart4 = new Chart(ctx4, {
-            type: 'line',
+        // chart4  Mango
+
+        var ctx = document.getElementById('chart4').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: ['2016', '2017', '2018', '2019', '2020'],
+                labels: mango_states,
                 datasets: [{
-                    label: 'Maharashtra',
-                    data: [700, 720, 740, 760, 780],
-                    fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
-                }, {
-                    label: 'Uttar Pradesh',
-                    data: [650, 670, 690, 710, 730],
-                    fill: false,
-                    borderColor: 'rgb(54, 162, 235)',
-                    tension: 0.1
+                    label: 'Production of Mango in India(in Mt)',
+                    data: mango_production,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2.5
                 }]
             },
             options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
+                scales: {
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }],
+                    xAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }]
+
                 }
             }
         });
 
-        // Chart 5
-        var ctx5 = document.getElementById('chart5').getContext('2d');
-        var chart5 = new Chart(ctx5, {
-            type: 'line',
+
+        // chart5  Papaya
+
+        var ctx = document.getElementById('chart5').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
             data: {
-                labels: ['2016', '2017', '2018', '2019', '2020'],
+                labels: papaya_states,
                 datasets: [{
-                    label: 'Uttar Pradesh',
-                    data: [600, 620, 640, 660, 680],
-                    fill: false,
-                    borderColor: 'rgb(255, 99, 132)',
-                    tension: 0.1
-                }, {
-                    label: 'Andhra Pradesh',
-                    data: [550, 570, 590, 610, 630],
-                    fill: false,
-                    borderColor: 'rgb(54, 162, 235)',
-                    tension: 0.1
+                    label: 'Production of Papaya in India(in Mt)',
+                    data: papaya_production,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2.5
                 }]
             },
             options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
+                scales: {
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }],
+                    xAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }]
+
+                }
+            }
+        });
+
+        // chart6  Banana
+
+        var ctx = document.getElementById('chart6').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: banana_states,
+                datasets: [{
+                    label: 'Production of Banana in India(in Mt)',
+                    data: banana_production,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2.5
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }],
+                    xAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            fontSize: 15
+                        }
+
+                    }]
+
                 }
             }
         });
