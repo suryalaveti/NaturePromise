@@ -103,8 +103,11 @@
             <div class="text-center">
                 <img src="/static/images/crop/{{value}}.jpg" class="crop-image" alt="Crop Image" style="height: 350px;width: 450px;">
             </div>
-            <h4 class="text-center mt-4">The best crop to grow is: <span
-                    style="color: salmon; font-weight: bold;">{{value | upper}}</span></h4>
+            <h4 class="text-center mt-4">The best crop to grow is: 
+                <a id="href" href="https://www.google.com/search?q={{value}}" target="_blank" rel="noopener noreferrer">
+                    <span style="color: salmon; font-weight: bold;">{{value | upper}}</span>
+                </a>
+            </h4>
         </div>
 
         <div class="suggestions">
